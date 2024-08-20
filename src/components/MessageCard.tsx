@@ -1,6 +1,5 @@
 'use client'
 import { cn } from "@/lib/utils";
-import { memo } from "react";
 import { MdVerified } from "react-icons/md";
 const MessageCard = ({
     message,

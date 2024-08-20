@@ -2,7 +2,7 @@
 
 import SendMessage from "@/components/SendMessage";
 import axios from "axios";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
     HoverCard,
     HoverCardContent,
@@ -35,7 +35,6 @@ export default function Home() {
             } catch (error) {}
             setButtonActive(false);
         };
-    // }, []);useCallback(() => {
 
     const deleteMessage = async (messageId: string) => {
         setButtonActive(true);
