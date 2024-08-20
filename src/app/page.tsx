@@ -2,7 +2,7 @@
 
 import SendMessage from "@/components/SendMessage";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
     HoverCard,
     HoverCardContent,
@@ -26,13 +26,16 @@ export default function Home() {
     const [yourMessageId, setYourMessageId] = useState<string[]>([]);
     const [buttonActive, setButtonActive] = useState(false);
 
-    const getMessages = async () => {
-        try {
-            const res = await axios.get("api/get-messages");
-            setMessages(res.data);
-        } catch (error) {}
-        setButtonActive(false);
-    };
+    const getMessages = 
+        async () => {
+            console.log('getmessage')
+            try {
+                const res = await axios.get("api/get-messages");
+                setMessages(res.data);
+            } catch (error) {}
+            setButtonActive(false);
+        };
+    // }, []);useCallback(() => {
 
     const deleteMessage = async (messageId: string) => {
         setButtonActive(true);

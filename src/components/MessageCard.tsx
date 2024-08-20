@@ -1,5 +1,6 @@
 'use client'
 import { cn } from "@/lib/utils";
+import { memo } from "react";
 import { MdVerified } from "react-icons/md";
 const MessageCard = ({
     message,
@@ -8,6 +9,7 @@ const MessageCard = ({
     message: { message: string; username: string; updatedAt: string };
     verified: boolean;
 }) => {
+    console.log('message card render!')
     return (
         <div className="h-56 w-[390px] sm:w-80 border rounded-lg mx-3 my-3 p-3 bg-white dark:bg-gray-800 shadow-md relative">
             <div className="flex justify-between items-center bg-red-50 dark:bg-gray-700 font-bold p-2 rounded-t-lg ">
