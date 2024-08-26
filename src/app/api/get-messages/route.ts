@@ -1,16 +1,10 @@
 import dbConnect from "@/lib/dbConnect";
 import Message from "@/model/Message";
 
+export const revalidate = 1;
+
 export async function GET(req: Request) {
     await dbConnect();
-    // const dbres = 
-    // if (dbres!=='connect'){
-    //     return new Response(
-    //         JSON.stringify({ message: "Failed to connect to database" }),
-    //         { status: 500 }
-    //     );
-    // }
-    // let messages = [];
 
     try {
         const messages = await Message.find().sort({ updatedAt: -1 });
