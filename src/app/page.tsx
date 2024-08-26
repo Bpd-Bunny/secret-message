@@ -26,7 +26,7 @@ export default function Home() {
     const [yourMessageId, setYourMessageId] = useState<string[]>([]);
     const [buttonActive, setButtonActive] = useState(false);
 
-    const getMessages = useCallback(async () => {
+    const getMessages = async () => {
         console.log("getmessage");
         try {
             const res = await axios.get("api/get-messages");
@@ -37,7 +37,7 @@ export default function Home() {
         }finally {
             setButtonActive(false);
         }
-    }, []);
+    }
 
     const deleteMessage = async (messageId: string) => {
         setButtonActive(true);
@@ -69,7 +69,7 @@ export default function Home() {
         getMessages();
         const ids = JSON.parse(localStorage.getItem("messageIds")!) || [];
         setYourMessageId(ids);
-    }, [getMessages]);
+    }, [messages]);
 
     return (
         <>
