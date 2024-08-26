@@ -2,7 +2,7 @@
 
 import SendMessage from "@/components/SendMessage";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
     HoverCard,
     HoverCardContent,
@@ -26,15 +26,18 @@ export default function Home() {
     const [yourMessageId, setYourMessageId] = useState<string[]>([]);
     const [buttonActive, setButtonActive] = useState(false);
 
-    const getMessages = 
-        async () => {
-            console.log('getmessage')
-            try {
-                const res = await axios.get("api/get-messages");
-                setMessages(res.data);
-            } catch (error) {}
+    const getMessages = useCallback(async () => {
+        console.log("getmessage");
+        try {
+            const res = await axios.get("api/get-messages");
+            console.log(res.data);
+            setMessages(res.data);
+        } catch (error) {
+            console.error("Failed to fetch messages:", error);
+        }finally {
             setButtonActive(false);
-        };
+        }
+    }, []);
 
     const deleteMessage = async (messageId: string) => {
         setButtonActive(true);
@@ -54,10 +57,10 @@ export default function Home() {
     };
 
     const deleteItemByValue = (value: string) => {
-        const messageIds = JSON.parse(
-            localStorage.getItem("messageIds") || "[]"
-        );
-        const updatedIds = messageIds.filter((id: string) => id !== value);
+        // const messageIds = JSON.parse(
+        //     localStorage.getItem("messageIds") || "[]"
+        // );
+        const updatedIds = yourMessageId.filter((id: string) => id !== value);
         localStorage.setItem("messageIds", JSON.stringify(updatedIds));
         setYourMessageId(updatedIds);
     };
@@ -66,7 +69,7 @@ export default function Home() {
         getMessages();
         const ids = JSON.parse(localStorage.getItem("messageIds")!) || [];
         setYourMessageId(ids);
-    }, []);
+    }, [getMessages]);
 
     return (
         <>

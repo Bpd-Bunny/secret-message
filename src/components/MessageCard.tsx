@@ -1,4 +1,5 @@
 'use client'
+import { memo } from 'react';
 import { cn } from "@/lib/utils";
 import { MdVerified } from "react-icons/md";
 const MessageCard = ({
@@ -39,4 +40,4 @@ const MessageCard = ({
     );
 };
 
-export default MessageCard;
+export default memo(MessageCard);

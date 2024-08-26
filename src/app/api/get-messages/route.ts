@@ -3,6 +3,13 @@ import Message from "@/model/Message";
 
 export async function GET(req: Request) {
     await dbConnect();
+    // const dbres = 
+    // if (dbres!=='connect'){
+    //     return new Response(
+    //         JSON.stringify({ message: "Failed to connect to database" }),
+    //         { status: 500 }
+    //     );
+    // }
     // let messages = [];
 
     try {

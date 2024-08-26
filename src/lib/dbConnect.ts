@@ -8,7 +8,7 @@ const connection: ConnectionObject = {};
 
 async function dbConnect(): Promise<void> {
     if (connection.isConnected) {
-        return;
+        return ;
     }
     
     try {
@@ -19,8 +19,10 @@ async function dbConnect(): Promise<void> {
         
     } catch (error) {
         console.error('-------',error,'-------')
+        // return 'not connected';
         process.exit(1);
     }
+    
 }
 
 export default dbConnect
